@@ -22,7 +22,10 @@ export class ViewStudentPage implements OnInit {
   ngOnInit() {
     // let cn;
     this.activatedRoute.queryParams.subscribe((params) => {
-      this.student = this.studentService.getStudentByControlNumber(params.cn);
+      //this.student = this.studentService.getStudentByControlNumber(params.cn);
+      this.studentService.getStudentById(params.id).subscribe(item =>{
+        this.student = item as Student;
+      });
     });
     // console.log(cn);
   }

@@ -3,13 +3,13 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Perfil de {{student.name}}</ion-title>
+        <ion-title *ngIf="student" > Perfil de {{student.name}}</ion-title>
     </ion-toolbar>
 
 </ion-header>
 
 <ion-content>
-    <ion-card>
+    <ion-card *ngIf="student">
         <img [src]="student.photo" />
         <ion-card-header>
             <ion-card-title>
