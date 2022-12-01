@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Student } from "../models/student";
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -45,10 +46,22 @@ export class StudentService {
     return result;
   }
 
+  public getStudentByCn(cn: string){
+    let student: Student;
+    let result = this.firestore.collection("students");
+    //const q = (this.firestore.collection("cities"), where("capital", "==", true));
+
+    return result;
+  }
+
   public newStudent(student: Student){
     //this.students.push(student);
     //return this.students;
     this.firestore.collection('students').add(student);
+  }
+
+  public updateById(id: string, student: Student){
+    this.firestore.collection("students").doc(id).set(student);
   }
 
 }
