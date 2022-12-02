@@ -60,8 +60,14 @@ export class StudentService {
     this.firestore.collection('students').add(student);
   }
 
-  public updateById(id: string, student: Student){
-    this.firestore.collection("students").doc(id).set(student);
+  public async updateStudent(student: Student, id: string){
+    try{
+      let result = await this.firestore.collection("students").doc(id).update(student);
+      return result
+    }catch(err){
+      console.log(err);
+      return null;
+    }
   }
 
 }
